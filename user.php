@@ -43,17 +43,40 @@ $query = mysqli_query($connection, "SELECT bookname, author FROM userdatainplan 
         </div>
     </div>
 
-    <div class="row align-content-center">
-        <div class="col">
-            <input type="text" name="bookname" class="form-control btn-lg" placeholder="Название книги" required>
+    <form action="redirection.php" method="POST">
+        <div class="row align-content-center">
+            <div class="col">
+                <input type="text" name="new-bookname" class="form-control btn-lg" placeholder="Название книги" required>
+            </div>
+            <div class="col">
+                <input type="text" name="new-author" class="form-control btn-lg" placeholder="Имя автора" required>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-lg btn-primary btn-block" onclick="addd" type="submit">Add</button>
+            </div>
         </div>
-        <div class="col">
-            <input type="text" name="author" class="form-control btn-lg" placeholder="Имя автора" required>
-        </div>
-        <div class="col-2">
-            <button class="btn btn-lg btn-primary btn-block" onclick="addd" type="button">Add</button>
-        </div>
-    </div>
+    </form>
+
+    <?php
+    if (isset($_POST['new-bookname']) and isset($_POST['new-author'])) {
+        $newBookname = $_POST['new-bookname'];
+        $newAuthor = $_POST['new-author'];
+
+        $insertQuery = "INSERT INTO userdatainplan (username, bookname, author) VaLUES ('$username', '$newBookname', '$newAuthor')";
+        $insertResult = mysqli_query($connection, $insertQuery) or die(mysqli_error($connection));
+//        $count = mysqli_num_rows($insertResult);
+//
+//        function console_log($check){
+//            if($check == 1){
+//                echo("<script>console.log('Success');</script>");
+//            } else {
+//                echo("<script>console.log('Fault');</script>");
+//            }
+//        }
+//
+//        console_log($count);
+    }
+    ?>
 
     <?php while ($row = mysqli_fetch_array($query)) { ?>
         <div class="row align-content-center table-bordered">

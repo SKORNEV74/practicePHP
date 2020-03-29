@@ -36,11 +36,11 @@ if (isset($_POST['username']) and isset($_POST['password'])) {
     $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
     $count = mysqli_num_rows($result);
 
-    if ($count == 1) {
-        $_SESSION['username'] = $username;
-    } else {
-        $fmsg = "Ошибка";
-    }
+//    if ($count == 1) {
+//        $_SESSION['username'] = $username;
+//    } else {
+//        $fmsg = "Ошибка";
+//    }
 }
 
 //if (isset($_SESSION['username'])) {
